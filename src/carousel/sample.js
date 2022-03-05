@@ -1,5 +1,5 @@
 import { Box, Button, ButtonGroup, FormControlLabel, Paper, Switch, TextField, Tooltip, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Carousel from "./carousel";
 import CarouselPage from "./page";
 import usePageNavigation from "./usePageNavigation";
