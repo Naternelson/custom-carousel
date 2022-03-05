@@ -1,5 +1,5 @@
 import { Box } from "@mui/material"
-import { useContext, useEffect, useRef, useState } from "react"
+import { useCallback, useContext, useEffect, useRef, useState } from "react"
 import { animated, useSpringRef, useTransition } from "react-spring"
 import CarouselWrapper from "."
 
@@ -44,7 +44,7 @@ export default function CarouselPage({children}){
     const AnimatedBox = animated(Box)
     const boxRef = useRef(null)
 
-    const transitionObject = (direction) =>({
+    const transitionObject = useCallback((direction) =>({
         ref: transRef,
         keys: null, 
         enter: [{transform: 'translate3d(0%,0,0)'}, {userSelect: 'auto'}],
@@ -53,7 +53,7 @@ export default function CarouselPage({children}){
         onStart: () => ctx.ready = false,
         onRest: () => ctx.ready = true,
         config: ctx.config
-    })
+    }), [ctx, transRef])
 
 
 
@@ -63,10 +63,11 @@ export default function CarouselPage({children}){
         // ====================
         // A Spring effect, to initialize the transition
         // ====================
+        console.log({index: ctx.index, ctx: {...ctx}})
         transRef.start()
         // transRef.start()
         return transRef.stop
-    },[ctx.index])
+    },[ctx.index, transRef])
 
     useEffect(()=> {
         // ====================
@@ -79,7 +80,7 @@ export default function CarouselPage({children}){
         // To prevent adverse side effects, the node is unselectable until the transition is complete
         // ====================
         setTransObj(transitionObject(ctx.direction))
-    }, [ctx.direction])
+    }, [ctx.direction, setTransObj, transitionObject])
 
     useEffect(()=>{
         // ====================
@@ -97,6 +98,7 @@ export default function CarouselPage({children}){
             const id = ctx.pages.length
             setPage(id)
             ctx.pages = [...ctx.pages, id]
+            console.log("Hello Govener", {pageId, pages: ctx.pages})
         }
         return () => ctx.pages = ctx.pages.splice(pageId, 1)
     }, [])

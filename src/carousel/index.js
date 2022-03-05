@@ -57,6 +57,7 @@ export default function CarouselWrapper(props){
         set ready(bool){    ready.current = !!bool },
         get config(){       return springConfig.current },
         set config(text){   springConfig.current = config[text]}
+        
     }
 
 
