@@ -1,11 +1,11 @@
 import './App.css';
 import CarouselWrapper from './carousel';
-import SamplePage from './carousel/sample';
+import Main from './main';
 
 function App() {
   return (
     <CarouselWrapper>
-      <SamplePage/>
+      <Main/>
     </CarouselWrapper>
   );
 }

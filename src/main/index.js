@@ -1,8 +1,8 @@
 import { Box, Button, ButtonGroup, FormControlLabel, Paper, Switch, TextField, Tooltip, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import Carousel from "./carousel";
-import CarouselPage from "./page";
-import usePageNavigation from "./usePageNavigation";
+import { useState } from "react";
+import Carousel from "../carousel/carousel";
+import CarouselPage from "../carousel/page";
+import usePageNavigation from "../carousel/usePageNavigation";
 
 export default function SamplePage(){
     const [loop, setLoop] = useState(true)
