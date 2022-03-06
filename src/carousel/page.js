@@ -1,4 +1,3 @@
-import { Box } from "@mui/material"
 import { useCallback, useContext, useEffect, useRef, useState } from "react"
 import { animated, useSpringRef, useTransition } from "react-spring"
 import CarouselWrapper from "."
@@ -41,7 +40,6 @@ export default function CarouselPage({children}){
     const [transObj, setTransObj] = useState(null)
     const transRef = useSpringRef()
     const ctx = useContext(CarouselWrapper.Context)
-    const AnimatedBox = animated(Box)
     const boxRef = useRef(null)
 
     const transitionObject = useCallback((direction) =>({
@@ -63,9 +61,7 @@ export default function CarouselPage({children}){
         // ====================
         // A Spring effect, to initialize the transition
         // ====================
-        console.log({index: ctx.index, ctx: {...ctx}})
         transRef.start()
-        // transRef.start()
         return transRef.stop
     },[ctx.index, transRef])
 
@@ -98,7 +94,6 @@ export default function CarouselPage({children}){
             const id = ctx.pages.length
             setPage(id)
             ctx.pages = [...ctx.pages, id]
-            console.log("Hello Govener", {pageId, pages: ctx.pages})
         }
         return () => ctx.pages = ctx.pages.splice(pageId, 1)
     }, [])
@@ -116,8 +111,8 @@ export default function CarouselPage({children}){
     }, [pageId, ctx.index, boxRef.current?.scrollHeight])
 
     return transitions((style, item) => (
-        <AnimatedBox ref={boxRef} style={{...style, position: 'absolute', width: '100%', display: (item!==pageId && 'none')}}>
+        <animated.div ref={boxRef} style={{...style, position: 'absolute', width: '100%', display: (item!==pageId && 'none')}}>
             {children}
-        </AnimatedBox>
+        </animated.div>
     ))
 }

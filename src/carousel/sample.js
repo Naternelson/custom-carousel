@@ -18,8 +18,8 @@ export default function SamplePage(){
     const delayProps = {variant: "standard", onBlur: () => delay === "" && setDelay(0), defaultValue: 0, size: "small", value: delay, onChange: ({target}) => (target.value >=0) ? setDelay(target.value): 0, inputProps: {inputMode: 'numeric', pattern: '[0-9]*'}}
 
     return(
-        <Box sx={{display: 'flex', height: "100vh", justifyContent: 'space-around' && "end", flexDirection: 'column'}}>
-            <Paper sx={{mt: 2, p:1, mx: 'auto', width: "75%" }}>
+        <Box sx={{display: 'flex',height: "100vh", justifyContent: "end", flexDirection: 'column'}}>
+            <Paper sx={{my: 2, p:1, mx: 'auto', width: "75%" }}>
                 <Carousel>
                     <CarouselPage>
                         <Box {...boxProps(0)}>

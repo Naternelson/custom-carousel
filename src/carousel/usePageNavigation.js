@@ -12,7 +12,7 @@ export default function usePageNavigation(options={loop: true, delay:0, wait: tr
         !isStart && navigateTo(ctx.index - 1)
         const needsLoop = isStart && options.loop 
         needsLoop && navigateTo(ctx.pages.length -1)
-    }, [ctx, navigateTo, options.loop])
+    }, [ctx, navigateTo, options.loop, options.wait])
 
     const navigateForward = useCallback(() =>{
         const isReady = ctx.ready 
@@ -22,7 +22,7 @@ export default function usePageNavigation(options={loop: true, delay:0, wait: tr
         !isEnd && navigateTo(ctx.index + 1)
         const needsLoop = isEnd && options.loop 
         needsLoop && navigateTo(0)
-    }, [navigateTo, options.loop, ctx])
+    }, [navigateTo, options.loop, ctx, options.wait])
 
     
 
